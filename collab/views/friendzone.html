@@ -1,0 +1,40 @@
+<h1>Make Friends</h1>
+{{#data}}
+	<table>
+	<tr>
+	<td>
+	<p>{{email}}</p>
+	</td>
+	<td>
+	<a href="frn/{{id}}"><img style="width:100px;height:100px" src="{{img}}"/></a>
+	</td>
+	<td>
+	<form action="/charge" method="post">
+	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_1s6vXRJysPBBknABFFz7JLFr" data-amount="100" data-name="Donate" data-description="Hire me"
+	data-locale="auto"
+	data-currency="usd">
+	</script>
+
+	<input type="hidden" name="chargeAmount" value="100">
+	</form>
+	</td>
+	<td>
+	{{location}}
+	</td>
+	
+	
+<td>
+</form>
+	<form action="/single" method="post">
+		<input type="hidden" value={{email}} name="email"/>
+		<input type="hidden" value={{id}} name="id"/>
+		<input type="hidden" value={{sample}} name="sample">
+		<input type="hidden" value={{location}} name="location"> 
+		<input type="hidden" value={{talent}} name="talent"/>
+		<input type="hidden" value={{img}} name="img">
+		<input type="submit" value="send request"/>
+	</form>
+	</td>
+	</tr>
+	</table>
+{{/data}}

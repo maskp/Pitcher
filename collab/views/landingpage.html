@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Landing page</title>
+</head>
+<body>
+{{email}}
+	<h1>Search the sky</h1>
+	<form action="/friendzone" method="post" id="search">
+		<!-- <input type="text" name="search"/> -->
+		<select form="search" name="talenttype">
+			<option value="Vocalist">Vocalist</option>
+			<option value="Songwriter">Song-writer</option>
+			<option value="Guitarist">Guitarist</option>
+			<option value="Drummer">Drummer</option>
+			<option value="Bassist">Bassist</option>
+		</select>
+		<select form="search" name="location">
+			<option value="US">US</option>
+			<option value="CANADA">CANADA</option>
+			<option value="MEXICO">MEXICO</option>
+		</select>
+		<input type="submit" name="submit" value="submit"/>
+	</form>
+
+</body>
+</html>

@@ -12,8 +12,22 @@
   },
   "author": "",
   "license": "ISC",
+    "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "mustache-express": "^1.2.2",
+    "morgan":"latest",
+    "mongodb":"latest",
+    "monk":"latest"
+
+  },
   "bugs": {
     "url": "https://github.com/maskp/Pitcher/issues"
   },
   "homepage": "https://github.com/maskp/Pitcher#readme"
 }
+
+
+

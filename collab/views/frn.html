@@ -1,0 +1,25 @@
+<ul>
+	
+	{{#data}}
+		<li>{{email}}</li>
+		<li>{{talent}}</li>
+		<li>{{sample}}</li>
+		<li>{{location}}</li>
+		<form action="/book" method="post">
+			<input type="hidden" name="email" value={{email}}/>
+			<input type="date" name="date" />
+			<input type="hidden" value={{location}} name="location" />
+			<input type="hidden" value={{talent}} name="talent">
+			<input type="hidden" value={{id}} name="id">
+			<input type="submit" value="Book Me">
+		</form>
+
+		<form action="/message" method="post">
+			<input type="hidden" name="receiverid" value={{id}}>
+			<input type="submit" value="send message"/>
+		<h3>Specify unavailable dates</h3>
+	{{/data}}
+
+
+
+</ul>

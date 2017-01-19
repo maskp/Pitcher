@@ -1,0 +1,21 @@
+/*.main-container {
+  width: 980px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+
+  /*url('http://www.cruzine.com/wp-content/uploads/2010/11/027-street-life.jpg') no-repeat;
+	background-size:cover;*/
+}
+'https://source.unsplash.com/random'
+.center-block { float: none }*/
+
+body{
+	background:black;
+
+	color:#777777;
+	font-family: 'Play', sans-serif;}
+
+h1{font-family: 'Shadows Into Light', cursive;}

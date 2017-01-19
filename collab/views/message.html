@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Message</title>
+</head>
+<body>
+	{{#data}}
+	<h1>Send message</h1>
+	<form action="/sendmessage" method="post">
+		<input type="hidden" name="receiverid" value={{receiverid}}>
+		<textarea name="messy"></textarea>
+		<input type="submit" value="send">
+	</form>
+	{{/data}}
+</body>
+</html>
