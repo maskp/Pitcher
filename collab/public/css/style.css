@@ -7,15 +7,28 @@ h1 {
   text-align: center;
 
   /*url('http://www.cruzine.com/wp-content/uploads/2010/11/027-street-life.jpg') no-repeat;
+  'https://source.unsplash.com/random'
+.center-block { float: none }}
 	background-size:cover;*/
-}
-'https://source.unsplash.com/random'
-.center-block { float: none }*/
 
+/*
 body{
-	background:black;
-
+	background:url('https://secure.static.tumblr.com/d2e72b350e986bd957ce0af6e38b5507/6qkxnj4/3mrnu6ale/tumblr_static_tumblr_static_d9mjawjx0so4wg8g8s0gsso0c_640.jpg') no-repeat;
+	background-size: cover;
+	color:white:;
 	color:#777777;
-	font-family: 'Play', sans-serif;}
+	font-family: 'Play', sans-serif;
+	}*/
 
-h1{font-family: 'Shadows Into Light', cursive;}
+p{
+	font-family: monospace;
+}
+
+h1{
+	font-family: 'Shadows Into Light', cursive;
+	}
+
+a{
+	text-decoration: none;
+	color:black;
+}

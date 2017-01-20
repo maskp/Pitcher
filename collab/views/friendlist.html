@@ -1,7 +1,19 @@
-<h1>Friendlist</h1>
+<h1>Pending Friendlist</h1>
 <ul>
 {{#data}}
 <li>{{email}},{{sample}},{{location}},{{talent}}</li>
 <img style="width:100px;height:100px" src="{{fimg}}"/>
+<form method="post" action="/frn/{{fuserid}}?_method=DELETE" >
+	<input type="submit" value="delete">
+</form>
+<br>
+<form method="post" action="/realfriends" method="post">
+	<input type="hidden" name="fuserid" value={{fuserid}}>
+	<input type="hidden" name="email" value={{email}}>
+	<input type="hidden" name="talent" value={{talent}}>
+	<input type="hidden" name="location" value={{location}}>
+	<input type="hidden" name="fimg" value={{fimg}}>
+	<input type="submit" value="approve request">
+</form>
 {{/data}}
 </ul>
