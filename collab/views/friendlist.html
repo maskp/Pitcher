@@ -1,19 +1,31 @@
+{{> headerPartial}}
 <h1>Pending Friendlist</h1>
-<ul>
+<table class="table">
+<tr>
+	<th>email</th>
+	<th>work</th>
+	<th>location</th>
+	<th>talent type</th>
+	<th>image</th>
+
 {{#data}}
-<li>{{email}},{{sample}},{{location}},{{talent}}</li>
-<img style="width:100px;height:100px" src="{{fimg}}"/>
-<form method="post" action="/frn/{{fuserid}}?_method=DELETE" >
-	<input type="submit" value="delete">
+<tr><td><a href="/frn/{{id}}">{{email}}</a></td><td>{{location}}</td><td>{{talent}}</td>
+<td><img style="width:100px;height:100px" src="{{img}}"/>{{fuserid}},{{id}}</td>
+<td><form method="post" action="/frn/{{id}}?_method=DELETE" >
+	<input type="submit" value="delete" class="btn btn-danger">
 </form>
-<br>
+</td>
+<td>
 <form method="post" action="/realfriends" method="post">
-	<input type="hidden" name="fuserid" value={{fuserid}}>
+	<input type="hidden" name="fuserid" value={{id}}>
 	<input type="hidden" name="email" value={{email}}>
 	<input type="hidden" name="talent" value={{talent}}>
 	<input type="hidden" name="location" value={{location}}>
 	<input type="hidden" name="fimg" value={{fimg}}>
-	<input type="submit" value="approve request">
+	<input type="submit" value="approve request" class="btn btn-success">
 </form>
+</td>
 {{/data}}
-</ul>
+
+</table>
+{{> footerPartial}}

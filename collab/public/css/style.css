@@ -20,15 +20,44 @@ body{
 	font-family: 'Play', sans-serif;
 	}*/
 
-p{
-	font-family: monospace;
+
+h1 {
+  text-align: center;
 }
 
-h1{
+/* Class*/
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p{
+	font-family: 'Inconsolata', monospace;
+}
+
+body{
 	font-family: 'Shadows Into Light', cursive;
+	background:lightgray;
 	}
 
 a{
 	text-decoration: none;
+}
+#image{
+	display:inline-block;
+}
+
+.video{
+	display:inline-block;
+}
+
+nav{background:url('https://68.media.tumblr.com/26e20861b45580564b8408c65cb8f985/tumblr_nv5vev4AnK1tzv1dpo1_500.gif') no-repeat;
+	background-size: cover;
+	background-position:center;
+	padding:15px;
+}
+
+a{opacity:.5;
 	color:black;
 }

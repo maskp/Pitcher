@@ -101,21 +101,11 @@ app.get("/signup", function(req, res) {
 app.post('/signup', function(req, res) {
     var data = req.body;
     console.log(data);
-    // var vio = data.samplework.split(' ');
-    // var video = vio[3].slice(3,vio[3].length)
-    
-    // // var encoded = Base64.encode(video);
-   
-
-
-   
-
-    
-
-    bcrypt.hash(data.password, 10, function(err, hash) {
+  
+   bcrypt.hash(data.password, 10, function(err, hash) {
 
         // read in image in raw format (as type Buffer):
-        fs.readFile(data.imgfile, function (err, imgData) {
+    
     // inserting data into column 'userimages' of type 'bytea':
      db.none(
 
@@ -129,7 +119,7 @@ app.post('/signup', function(req, res) {
 
             })
           
-});
+
 
        
     });
@@ -176,7 +166,7 @@ app.get('/landingpage', function(req, res) {
     db.one("select * from usrs where id=$1", [email])
         .then(function(data) {
 
-            res.render('landingpage', data)
+            res.render('landingpage', {'data':data})
         })
         .catch(function(error) {
             res.send('no data')
@@ -233,9 +223,9 @@ app.post('/single', function(req, res) {
 app.get('/friendlist', function(req, res) {
     var sata = req.session.user.email
     
-    db.any("select distinct on (f.email) f.email,f.sample,f.talent,f.location,f.fimg,f.fuserid from usrs as u inner join friends as f on u.id = f.uid where u.id=$1", [req.session.user.id])
+    db.any("select distinct on (u.email) u.email,u.sample,u.talent,u.location,u.img,f.fuserid,u.id from usrs as u inner join friends as f on u.id = f.uid where f.fuserid=$1", [req.session.user.id])
         .then(function(data) {
-            console.log(data.fimg)
+            console.log(data);
             res.render('friendlist', {
                 'data': data
             });
@@ -362,12 +352,21 @@ app.post('/charge', function(req, res) {
 //delete 
 //================================================================
 app.delete('/frn/:id',function(req,res){
-    
-    db.none('delete from friends where fuserid = $1',[req.params.id])
+    console.log(req.params.id)
+    db.none('delete from friends where uid = $1',[req.params.id])
     .then(function(){
         res.redirect('/')
     }).catch(function(){
         console.log('something went horribly wrong!!')
+    })
+})
+
+app.delete('/rfrn/:fuserid',function(req,res){
+    db.none('delete from approvedlist where fuserid=$1',[req.params.fuserid])
+    .then(function(){
+        res.redirect('/')
+    }).catch(function(){
+        res.send('something went horribly wron!!')
     })
 })
 //=======================================================================
@@ -375,13 +374,23 @@ app.delete('/frn/:id',function(req,res){
 //====================================================================================================================
 app.post('/realfriends',function(req,res){
    var kata = req.body
-    // console.log(kata);
+    
     // console.log(req.session.user)
-    console.log(kata)
-    db.none("delete from friends where fuserid=$1",[kata.fuserid]).then(function(){}).catch(function(){console.log('something went horribly wrong!!')})
-    db.none("insert into approvedlist (email,uid,talent,location,fimg,fuserid) values ($1,$2,$3,$4,$5,$6)", [kata.email, req.session.user.id,kata.talent,kata.location,kata.fimg,kata.id])
+    console.log('fuserid: '+kata.fuserid)
+    
+
+    db.none("delete from friends where uid=$1",[kata.fuserid])
+    .then(function(){
+        db.none("insert into approvedlist (email,uid,talent,location,fimg,fuserid) values ($1,$2,$3,$4,$5,$6)", [kata.email, req.session.user.id,kata.talent,kata.location,kata.fimg,kata.fuserid])
     // db.any("select distinct on (f.email) f.email,f.sample from usrs as u inner join friends as f on u.id = f.uid where u.id=$1", [req.session.user.id])
         .then(function() {
+    //         db.any("select u.email,f.email,u.talent,f.fuserid from usrs as u inner join approvedlist as f on u.id = f.fuserid where f.uid = $1 or f.fuserid=$2",[req.session.user.id,kata.fuserid])
+    // .then(function(data){
+    //     res.render('realfriends',{'data':data});
+    // }).catch(function(error){
+    //     console.log(error)
+    //     res.send('somethign went wrong')
+    // })
             
             res.redirect('/');
         })
@@ -389,14 +398,47 @@ app.post('/realfriends',function(req,res){
             console.log(error)
             res.send('something went wrong')
         })
+        
+    })
+    .catch(function(){
+        console.log('something went horribly wrong!!')
+                    })
+
+    
 
 
 })
+
 app.get('/realfriends',function(req,res){
-    db.any("select * from approvedlist where uid=$1",[req.session.user.id])
+    
+    
+    db.any("select distinct on (email,gmail) u.id,u.email,u.img,u.talent,u.location as uloc,a.uid,a.fuserid as fuserid,a.email as gmail,a.location as flocation,a.talent as ftalent from usrs as u inner join approvedlist as a on u.id = a.uid where a.uid=$1 or a.fuserid=$2;",[req.session.user.id,req.session.user.id])
     .then(function(data){
-        res.render('realfriends',{'data':data});
-    }).catch(function(error){
+        var kata = [];
+    for(var i=0;i<data.length;i++){
+        if (req.session.user.id!==data[i].uid){
+            
+            var ghata={'talent':data[i].talent,
+                      'email':data[i].email,
+                      'location':data[i].uloc,
+                      
+                        }
+            kata.push(ghata)
+                }
+        else if(req.session.user.id!==data[i].fuserid){
+            
+            var ghata={'talent':data[i].ftalent,
+                      'email':data[i].gmail,
+                      'location':data[i].flocation,
+                      
+                        }
+                        kata.push(ghata)
+                //res.render('realfriends',{'data':data})
+        }
+
+        // res.render('realfriends',{'data':kata});
+    }//for ends
+    res.render('realfriends',{'data':kata})}).catch(function(error){
         console.log(error)
         res.send('somethign went wrong')
     })

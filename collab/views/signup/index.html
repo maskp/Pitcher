@@ -1,36 +1,61 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--   <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
 
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+   <link href="/css/animate.css" rel="stylesheet">
+   <link href="/css/hover-min.css" rel="stylesheet" media="all">
     <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
-     <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Shadows+Into+Light" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet"> 
+
+
      
   </head> 
-  <body>
-    <div class="main-container">
-      <div class="border-container">
-        <h1>Hop In</h1>
-        <div class="col-lg-6 center-block">
-          <div class="well bs-component">
-            <form class="form-horizontal" action="/signup" method="post" id="select">
+  <body style="background:lightgray">
+  
+       <div class="container-fluid">
+      <div>
+        <h1 class="animated slideInUp" >Collab  <small>where freethinkers live!!</small></h1>
+       
+        <br><br/>
+        
+        
+            <form action="/signup" method="post" id="select">
               <fieldset>
                 <legend>Sign Up</legend>
-                <div class="form-group">
-                  <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                  <div class="col-lg-10">
-                    <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email" required />
+                
+                <!-- email-->
+                <div class="row">
+                    <div class="col-xs-6">
+                  <label for="inputEmail" class="text-center">Email</label>
+                  
+                    <input name="email" type="text" id="inputEmail" placeholder="Email" class="form-control" required />
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                  <div class="col-lg-10">
-                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password" required/>
+                
+                
+                 <!-- password-->
+                 <div class="row">
+                <div class="col-xs-6">
+                  <label for="inputPassword">Password</label>
+                  
+                    <input name="password" type="password" id="inputPassword" placeholder="Password" class="form-control" required/>
                   </div>
-                  <div class="form-group">
-                    <label for="inputSelect" class="col-lg-4 control-label">Talent</label><br>
-                    <select form="select" name="TalentType">
+                  </div>
+
+                 <!-- select talent-->
+                 <div class="row">
+                  <div class="col-xs-6">
+                    <label for="inputSelect">Talent</label><br>
+                    <select form="select" name="TalentType" class="form-control">
                       
                       <option value="Vocalist">Vocalist</option>
                       <option value="Guitarist">Guitarist</option>
@@ -42,12 +67,17 @@
                     </select>
                     <br/>
                     <label for="inputsample">Include link to your embeded source</label><br>
-                  <textarea name="samplework" row="4" cols="40"></textarea>
+                  <textarea name="samplework" class="form-control">
+                      
+                  </textarea>
                   </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputSelect" class="col-lg-4 control-label">Location</label><br>
-                    <select form="select" name="location">
+            </div>
+
+             <!-- select location-->
+            <div class="row">
+                <div class="col-xs-6">
+                    <label for="inputSelect">Location</label><br>
+                    <select form="select" name="location" class="form-control">
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
                         <option value="AZ">Arizona</option>
@@ -102,32 +132,41 @@
                                             
                       </select>
                 </div>
-                <div class="form-group">
-                  <label for="inputimg">upload image url</label><br>
-                    <input name="img" type="text">
+                </div>
 
-                </div><br>
+                 <!-- image url-->
+                 <div class="row">
+                <div class="col-xs-6">
+                  <label for="inputimg">upload image url</label><br>
+                    <input name="img" class="form-control" type="text" placeholder="http://img-something.jpg">
+
+                </div>
+                </div>
+                <br>
+
+                 <!-- upload file
                 <div class="form-group">
                   <label for="inputuserimages">upload image from file</label><br>
                     <input name="imgfile" type="file">
-
                 </div>
 
-
+                -->
 
                 <br>
 
 
-                <div class="form-group">
-                  <div class="col-lg-10 col-lg-offset-2">
+                <div>
+                  <div>
                     <button type="submit" class="btn btn-primary">Join!</button>
+                    <a href="/" class="btn btn-danger" role="button">Login</a>
                   </div>
                 </div>
+
               </fieldset>
             </form>
           </div>
-        </div>
-      </div>
-    </div>
-  </body>
+          </div>
+
+
+    </body>
 </html>

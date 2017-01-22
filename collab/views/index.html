@@ -2,9 +2,14 @@
 <html>
   <head>
   <!--   <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
-    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <link href="/css/style.css" rel="stylesheet" type="text/css">
+   <link href="/css/animate.css" rel="stylesheet">
+   <link href="/css/hover-min.css" rel="stylesheet" media="all">
     <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Lobster|Shadows+Into+Light" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet"> 
     <script
         src="http://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -12,49 +17,54 @@
     <script src="/js/script.js"></script>
   </head>
   <body>
-    <div class="main-container">
-      <div class="border-container">
-        <h1>Collab</h1>
-        <small>Where freethinkers live!!</small>
+    <div class="container-fluid">
+      <div>
+        <h1 class="animated slideInUp" >Collab  <small>where freethinkers live!!</small></h1>
+       
         <br><br/>
 
         {{#logged_in}}
-        <div class="col-lg-6 center-block">
-          <div class="alert alert-dismissible alert-warning">
-            <nav>
-               <button><a href="/logout">Logout!</a></button>
-                <button><a href="/landingpage">Landing page</a></button>
-                <button><a href="/friendlist">Friend list</a></button>
-                <button><a href="/update">Update</a></button>
-                <button><a href="/yourbookings">Your Bookings</a></button>
-                <button><a href="/calender">calender</a></button>
-                <button><a href="/MessageList">Your Messages</a></button>
-                <button><a href="/realfriends">Real Friends</a></button>
-
+        <div class="col-lg-12 center-block">
+          
+            <nav class="navbar navbar-default">
+              <div class="container">
+              
+                <a class="btn btn-default hvr-hang" href="/logout" role="button"><b>Logout!</b></a>
+                <a class="btn btn-default hvr-hang" href="/landingpage" role="button"><b>Search</b></a>
+                <a class="btn btn-default hvr-hang" href="/friendlist" role="button"><b>Friend list</b></a>
+                <a class="btn btn-default hvr-hang" href="/update" role="button"><b>Update</b></a>
+                <a class="btn btn-default hvr-hang" href="/yourbookings" role="button"><b>Your Bookings</b></a>
+                <a class="btn btn-default hvr-hang" href="/calender" role="button"><b>calender</b></a>
+                <a class="btn btn-default hvr-hang" href="/MessageList" role="button"><b>Your Messages</b></a>
+                <a class="btn btn-default hvr-hang" href="/realfriends" role="button"><b>Real Friends</b></a>
+                </div>
+          
             </nav>
-            <h4>Welcome {{email}}!</h4>
-            <hr>
-              <img style="width:100px;height:100px" src={{{userimages}}}>
-            <hr>
-          <div>
-          <table>
-          <tr>
-            <td>
+            <br/>
+          <h4>Welcome {{email}}!</h4>
+            
+          <div id="image" class="col-md-3">
+        
               <img style="width:200px;height:200px" src="{{img}}"/>
             
             
             <p>I'm a {{talent}}</p>
-            </td>
+          </div>
+           
            <!--  <iframe width="560" height="315" src={{sample}} frameborder="0"></iframe> -->
-          <td>
-           {{{sample}}}
-           </td>
-           </tr>
-           </table>
-          </div>          
-            <h3>Description</h3>
+         <div>
+          <div class="video col-md-9 center-block embed-responsive embed-responsive-4by3 float-sm-left">
+           {{{sample}}}<br>
+           </div>
+           I was the {{talent}} for this song.
+          </div>
+          
+        
+          <div class="col-md-12">          
+            <h3>summary</h3>
             <blockquote>
-            <p>Chase mice mark territory or intently stare at the same spot. Give attitude hunt anything that moves so inspect anything brought into the house climb leg. Give attitude nap all day. Missing until dinner time run in circles yet rub face on everything yet climb leg make muffins or inspect anything brought into the house. Nap all day flop over burrow under covers. All of a sudden go crazy lick butt. Sun bathe. Sweet beast sun bathe or chase mice rub face on everything or leave dead animals as gifts for mark territory play time. Find something else more interesting give attitude. Throwup on your pillow need to chase tail mark territory, but flop over for chase imaginary bugs or flop over. Stretch destroy couch leave dead animals as gifts. Flop over hopped up on goofballs, yet swat at dog. Burrow under covers leave hair everywhere stare at ceiling or stretch chew foot rub face on everything use lap as chair. Shake treat bag. Hunt anything that moves swat at dog but leave dead animals as gifts need to chase tail chew iPad power cord and lick butt. Leave dead animals as gifts shake treat bag. Attack feet attack feet, burrow under covers sun bathe so use lap as chair. Play time hate dog so leave hair everywhere. Chew foot stand in front of the computer screen missing until dinner time so missing until dinner time. Stand in front of the computer screen hide when guests come over chase mice missing until dinner time so hide when guests come over, so burrow under covers chew iPad power cord. Chew foot why must they do that or find something else more interesting leave hair everywhere and throwup on your pillow or hopped up on goofballs. Burrow under covers. Swat at dog sweet beast give attitude find something else more interesting leave hair everywhere. Destroy couch run in circles. Claw drapes leave hair everywhere swat at dog climb leg why must they do that.</p>
+              <p>Chase mice mark territory or intently stare at the same spot. Give attitude hunt anything that moves so inspect anything brought into the house climb leg. Give attitude nap all day. Missing until dinner time run in circles yet rub face on everything yet climb leg make muffins or inspect anything brought into the house. Nap all day flop over burrow under covers. All of a sudden go crazy lick butt. Sun bathe. Sweet beast sun bathe or chase mice rub face on everything or leave dead animals as gifts for mark territory play time. Find something else more interesting give attitude. Throwup on your pillow need to chase tail mark territory, but flop over for chase imaginary bugs or flop over. Stretch destroy couch leave dead animals as gifts. Flop over hopped up on goofballs, yet swat at dog. Burrow under covers leave hair everywhere stare at ceiling or stretch chew foot rub face on everything use lap as chair. Shake treat bag. Hunt anything that moves swat at dog but leave dead animals as gifts need to chase tail chew iPad power cord and lick butt. Leave dead animals as gifts shake treat bag. Attack feet attack feet, burrow under covers sun bathe so use lap as chair. Play time hate dog so leave hair everywhere. Chew foot stand in front of the computer screen missing until dinner time so missing until dinner time. Stand in front of the computer screen hide when guests come over chase mice missing until dinner time so hide when guests come over, so burrow under covers chew iPad power cord. Chew foot why must they do that or find something else more interesting leave hair everywhere and throwup on your pillow or hopped up on goofballs. Burrow under covers. Swat at dog sweet beast give attitude find something else more interesting leave hair everywhere. Destroy couch run in circles. Claw drapes leave hair everywhere swat at dog climb leg why must they do that.
+                </p>
             </blockquote>
           </div>
           

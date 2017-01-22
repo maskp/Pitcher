@@ -1,25 +1,86 @@
-<ul>
+<!doctype html>
+<html>
+  <head>
+  <!--   <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
+    
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <link href="/css/style.css" rel="stylesheet" type="text/css">
+   <link href="/css/animate.css" rel="stylesheet">
+   <link href="/css/hover-min.css" rel="stylesheet" media="all">
+    <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Shadows+Into+Light" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet"> 
+    <script
+        src="http://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div>
+        <h1 class="animated slideInUp" >Collab  <small>where freethinkers live!!</small></h1>
+       
+        <br><br/>
+
+        
+        <div class="col-lg-12 center-block">
+          
+            <nav class="navbar navbar-default">
+              <div class="container">
+              
+                <a class="btn btn-default hvr-hang" href="/logout" role="button"><b>Logout!</b></a>
+                <a class="btn btn-default hvr-hang" href="/landingpage" role="button"><b>Search</b></a>
+                <a class="btn btn-default hvr-hang" href="/friendlist" role="button"><b>Friend list</b></a>
+                <a class="btn btn-default hvr-hang" href="/update" role="button"><b>Update</b></a>
+                <a class="btn btn-default hvr-hang" href="/yourbookings" role="button"><b>Your Bookings</b></a>
+                <a class="btn btn-default hvr-hang" href="/calender" role="button"><b>calender</b></a>
+                <a class="btn btn-default hvr-hang" href="/MessageList" role="button"><b>Your Messages</b></a>
+                <a class="btn btn-default hvr-hang" href="/realfriends" role="button"><b>Real Friends</b></a>
+                </div>
+          
+            </nav>
+            <br/>
+
+
+
+<ul class="list-unstyled">
 	
 	{{#data}}
-		<li>{{email}}</li>
-		<li>{{talent}}</li>
-		<li>{{sample}}</li>
-		<li>{{location}}</li>
+		<li class="pull-right">{{{sample}}}</li>
+		<li><img src="{{img}}" style="width:300px;height:275px"/></li>
+		
+		<li><b>I am </b> {{email}}</li>
+		<li><b>{{talent}}</b></li>
+		<li><b>I am from </b>{{location}}</li>
+
+		
+		
 		<form action="/book" method="post">
 			<input type="hidden" name="email" value={{email}}/>
 			<input type="date" name="date" />
 			<input type="hidden" value={{location}} name="location" />
 			<input type="hidden" value={{talent}} name="talent">
 			<input type="hidden" value={{id}} name="id">
-			<input type="submit" value="Book Me">
+			<input type="submit" value="Book Me" class="btn btn-primary">
 		</form>
-
+		<br/>
 		<form action="/message" method="post">
 			<input type="hidden" name="receiverid" value={{id}}>
-			<input type="submit" value="send message"/>
-		<h3>Specify unavailable dates</h3>
+			<input type="submit" value="send message" class="btn btn-primary"/>
+		</form>
+		<h3>Unavailable dates</h3>
+		<form action="/unavailabledates" method="post">
+			<input type="date" name="date"/>
+			<input type="submit" value="specify"/>
+		</form>
 	{{/data}}
 
 
 
 </ul>
+
+</div>
+</div>
+</div>
+</body>

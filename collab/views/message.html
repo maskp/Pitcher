@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Message</title>
-</head>
-<body>
+{{>headerPartial}}
 	{{#data}}
 	<h1>Send message</h1>
+	
 	<form action="/sendmessage" method="post">
 		<input type="hidden" name="receiverid" value={{receiverid}}>
-		<textarea name="messy"></textarea>
+		<div class="form-group">
+		<textarea name="messy" row="6" col="50"></textarea>
+		
 		<input type="submit" value="send">
+		
 	</form>
+	</div>
 	{{/data}}
+{{footerPartial}}
 </body>
 </html>
