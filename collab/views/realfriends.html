@@ -9,9 +9,9 @@
 	</tr>
 {{#data}}
 <tr>
-	<td><a href="frn/{{id}}">Email:{{email}}</a></td>
-	<td>Talent:{{talent}}</td>
-	<td>location:{{location}}</td>
+	<td><a href="frn/{{id}}">{{email}}</a></td>
+	<td>awesome:{{talent}}</td>
+	<td>beautiful:{{location}}</td>
 	<td><form method="post" action="/rfrn/{{id}}?_method=DELETE" >
 			<input type="submit" value="delete" class="btn btn-danger">
 		</form>

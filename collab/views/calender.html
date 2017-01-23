@@ -1,7 +1,7 @@
 
 {{> headerPartial}}
 <h2>Booked Dates</h2>
-<table>
+<table class="table">
 	<tr><th>Email</th>
 		<th>Date</th>
 		<th>Location</th>
@@ -13,10 +13,13 @@
 		<td>{{date}}</td>
 		<td>{{location}}</td>
 		<td>{{talent}}</td>
+		<td><form method="post" action="/deletebooking/{{bid}}?_method=DELETE">
+				<input type="submit" value="delete" class="btn btn-danger">
+			</form>
+		</td>
 	</tr>
 	{{/data}}
-	{{> footerPartial}}
-
 </table>
+{{> footerPartial}}
 </body>
 </html>

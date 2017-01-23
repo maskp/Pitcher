@@ -308,9 +308,9 @@ app.post('/charge', function(req, res) {
 
   app.get('/calender',function(req,res){
     var id = req.session.user.id;
-    db.any("select u.email,u.talent,u.location,f.date from usrs as u inner join bookings as f on u.id = f.uid where f.fid=$1",[id])
+    db.any("select u.email,u.talent,u.location,f.date,f.bid from usrs as u inner join bookings as f on u.id = f.uid where f.fid=$1",[id])
     .then(function(data){
-        console.log(data);
+        
         res.render('calender',{'data':data});
     })
   })
@@ -376,8 +376,15 @@ app.delete('/rfrn/:id',function(req,res){
     })
 })
 
-app.delete('/delbok',function(req,res){
-    db.none('delete from bookings where ')
+app.delete('/deletebooking/:bid',function(req,res){
+
+    
+    db.none('delete from bookings where bid=$1',[req.params.bid])
+    .then(function(){
+        res.redirect('/')
+    }).catch(function(err){
+        res.render('404')
+    })
 })
 //=======================================================================
 //approved list
@@ -465,7 +472,8 @@ app.get('/adform',function(req,res){
 app.post('/postads',function(req,res){
     console.log(req.body)
     var data = req.body
-    db.none("insert into adpost (email,ad,location,talent,uid) values ($1,$2,$3,$4,$5)",[data.email,data.ad,data.location,data.talent,req.session.user.id])
+    console.log(data.date)
+    db.none("insert into adpost (email,ad,location,talent,uid,date) values ($1,$2,$3,$4,$5,$6)",[data.email,data.ad,data.location,data.talent,req.session.user.id,data.date])
     .then(function(){
         res.redirect('/')
     }).catch(function(err){
@@ -477,6 +485,7 @@ app.post('/postads',function(req,res){
 app.get('/postads',function(req,res){
     db.any("select * from adpost")
     .then(function(data){
+        console.log(data)
         res.render('adpost',{data:data})
     })
 })

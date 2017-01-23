@@ -1,9 +1,10 @@
 {{>headerPartial}}
-<ul>
+<ul class="list-unstyled">
 Message List<br>
+<br><hr/>
 	{{#data}}
 		<li>From:<a href="frn/{{uid}}">{{email}}</a></li>
-		<li>Message:{{message}}</li>
+		<li>Message: {{message}}</li>
 		<br><br>
 	{{/data}}
 </ul>

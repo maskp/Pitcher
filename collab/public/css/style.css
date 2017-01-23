@@ -39,7 +39,7 @@ p{
 body{
 	font-family: 'Shadows Into Light', cursive;
 	background:lightgray;
-	font-size:15px;
+	font-size:20px;
 	}
 
 a{
@@ -57,6 +57,11 @@ nav{background:url('../water.gif') no-repeat;
 	background-size: cover;
 	background-position:center;
 	padding:15px;
+}
+
+nav a{
+	font-family: 'Inconsolata', monospace;
+	font-size: 15px;
 }
 
 a{opacity:.5;
