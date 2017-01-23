@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Booked dates</title>
-</head>
-<body>
+
 {{> headerPartial}}
 <h2>Booked Dates</h2>
+<table>
+	<tr><th>Email</th>
+		<th>Date</th>
+		<th>Location</th>
+		<th>Talent</th>
+		<th>Delete</th>
 	{{#data}}
-		{{email}}
-		{{date}}
-		{{location}}
-		{{talent}}
+	<tr><td>{{email}}</td>
+		<td>{{date}}</td>
+		<td>{{location}}</td>
+		<td>{{talent}}</td>
+		<td><form action="/delbok/{{}}?_method=DELETE" method="post">
 	{{/data}}
 	{{> footerPartial}}
+</table>
 </body>
 </html>

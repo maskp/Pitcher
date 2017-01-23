@@ -39,6 +39,7 @@ p{
 body{
 	font-family: 'Shadows Into Light', cursive;
 	background:lightgray;
+	font-size:15px;
 	}
 
 a{
@@ -52,7 +53,7 @@ a{
 	display:inline-block;
 }
 
-nav{background:url('https://68.media.tumblr.com/26e20861b45580564b8408c65cb8f985/tumblr_nv5vev4AnK1tzv1dpo1_500.gif') no-repeat;
+nav{background:url('../water.gif') no-repeat;
 	background-size: cover;
 	background-position:center;
 	padding:15px;

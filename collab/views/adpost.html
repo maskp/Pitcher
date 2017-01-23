@@ -1,0 +1,22 @@
+{{>headerPartial}}
+<table class="table">
+		<tr>
+		<th>Email</th>
+		<th>ad</th>
+		<th>location</th>
+		<th>talent</th>
+		</tr>
+{{#data}}
+	
+
+		<tr>
+			<td><a href='/frn/{{uid}}'>{{email}}</a></td>
+			<td>{{ad}}</td>
+			<td>{{location}}</td>
+			<td>{{talent}}</td>
+		</tr>
+
+
+	</table>
+{{/data}}
+{{>footerPartial}}

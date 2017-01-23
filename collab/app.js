@@ -89,7 +89,7 @@ app.put("/update",function(req,res){
 
     db.none('update usrs set email = $1,img = $2,sample=$3 where id=$4',[data.email,data.img,data.sample,id]).then(function(){
         res.redirect('/')
-    })
+    }).catch(function(){res.render('404')})
 })
 
 
@@ -116,6 +116,7 @@ app.post('/signup', function(req, res) {
             })
             .catch(function(error) {
                 console.log(error)
+                res.render('404')
 
             })
           
@@ -132,7 +133,7 @@ app.post('/login', function(req, res) {
             "SELECT * FROM usrs WHERE email = $1", [data.email]
         )
         .catch(function() {
-            res.send('Email/Password never found.')
+            res.render('404')
         })
         .then(function(user) {
             bcrypt.compare(data.password, user.password, function(err, cmp) {
@@ -140,7 +141,7 @@ app.post('/login', function(req, res) {
                     req.session.user = user;
                     res.redirect('/');
                 } else {
-                    res.send('Email/Password not found.')
+                    res.render('404')
                 }
             });
         });
@@ -169,7 +170,7 @@ app.get('/landingpage', function(req, res) {
             res.render('landingpage', {'data':data})
         })
         .catch(function(error) {
-            res.send('no data')
+            res.render('404')
         })
 
 
@@ -214,6 +215,7 @@ app.post('/single', function(req, res) {
         })
         .catch(function(error) {
             console.log(error)
+            res.render('404')
         })
 
 })
@@ -232,6 +234,7 @@ app.get('/friendlist', function(req, res) {
         })
         .catch(function(error) {
             console.log(error)
+            res.render('404')
         })
 })
 
@@ -247,6 +250,7 @@ app.get('/frn/:id', function(req, res) {
         })
         .catch(function(error) {
             console.log(error)
+            res.render('404')
         })
 })
 
@@ -343,7 +347,7 @@ app.post('/charge', function(req, res) {
             
             res.render('MessageList',{'data':data})
         }).catch(function(err){
-            res.send('something went horribly wrong!!')
+            res.render('404')
         })
 
     })
@@ -358,16 +362,22 @@ app.delete('/frn/:id',function(req,res){
         res.redirect('/')
     }).catch(function(){
         console.log('something went horribly wrong!!')
+        res.render('404')
     })
 })
 
-app.delete('/rfrn/:fuserid',function(req,res){
-    db.none('delete from approvedlist where fuserid=$1',[req.params.fuserid])
+app.delete('/rfrn/:id',function(req,res){
+    console.log(req.params.id)
+    db.none('delete from approvedlist where uid=$1 and fuserid=$2',[req.params.id,req.session.user.id])
     .then(function(){
         res.redirect('/')
     }).catch(function(){
-        res.send('something went horribly wron!!')
+        res.render('404')
     })
+})
+
+app.delete('/delbok',function(req,res){
+    db.none('delete from bookings where ')
 })
 //=======================================================================
 //approved list
@@ -414,6 +424,7 @@ app.get('/realfriends',function(req,res){
     
     db.any("select distinct on (email,gmail) u.id,u.email,u.img,u.talent,u.location as uloc,a.uid,a.fuserid as fuserid,a.email as gmail,a.location as flocation,a.talent as ftalent from usrs as u inner join approvedlist as a on u.id = a.uid where a.uid=$1 or a.fuserid=$2;",[req.session.user.id,req.session.user.id])
     .then(function(data){
+        console.log(data);
         var kata = [];
     for(var i=0;i<data.length;i++){
         if (req.session.user.id!==data[i].uid){
@@ -421,6 +432,7 @@ app.get('/realfriends',function(req,res){
             var ghata={'talent':data[i].talent,
                       'email':data[i].email,
                       'location':data[i].uloc,
+                      'id':data[i].uid
                       
                         }
             kata.push(ghata)
@@ -430,7 +442,7 @@ app.get('/realfriends',function(req,res){
             var ghata={'talent':data[i].ftalent,
                       'email':data[i].gmail,
                       'location':data[i].flocation,
-                      
+                      'id':data[i].fuserid
                         }
                         kata.push(ghata)
                 //res.render('realfriends',{'data':data})
@@ -440,13 +452,49 @@ app.get('/realfriends',function(req,res){
     }//for ends
     res.render('realfriends',{'data':kata})}).catch(function(error){
         console.log(error)
-        res.send('somethign went wrong')
+        res.render('404')
     })
 })
 
 //===========================================================================================================================
+//================================================================================ads====================================
+app.get('/adform',function(req,res){
+    res.render('adform')
+})
 
+app.post('/postads',function(req,res){
+    console.log(req.body)
+    var data = req.body
+    db.none("insert into adpost (email,ad,location,talent,uid) values ($1,$2,$3,$4,$5)",[data.email,data.ad,data.location,data.talent,req.session.user.id])
+    .then(function(){
+        res.redirect('/')
+    }).catch(function(err){
+        console.log(err);
+        res.render('404')
+    })
+})
 
+app.get('/postads',function(req,res){
+    db.any("select * from adpost")
+    .then(function(data){
+        res.render('adpost',{data:data})
+    })
+})
+//=====================================================================================================================
+
+//=================================unavailable dates===================================================================
+    app.post('/unavailabledates',function(req,res){
+        var data = req.body
+        console.log(data)
+        db.any("select date from bookings where fid=$1",[data.id])
+        .then(function(data){
+            console.log(data)
+            res.render('unavailabledates',{'data':data});
+        }).catch(function(){
+            res.render('404')
+        })
+    })
+//=====================================================================================================================
 
 
 

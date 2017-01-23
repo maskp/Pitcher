@@ -1,19 +1,10 @@
 {{>headerPartial}}
 <h1> Approved Friendlist</h1>
 <ul>
-<!-- {{#data}}
-{{uid}},<br>{{fuserid}}
-<li>{{gmail}} and {{email}} are friends,{{location}},{{talent}}</li>
-<img style="width:100px;height:100px" src="{{img}}"/>
-<form method="post" action="/rfrn/{{fuserid}}?_method=DELETE" >
-	<input type="submit" value="delete">
-</form>
-<br>
-{{fuck}}
-{{/data}} -->
+
 {{#data}}
-<li> Email:{{email}}||Talent:{{talent}}||location:{{location}}</li>
-<form method="post" action="/rfrn/{{fuserid}}?_method=DELETE" >
+<li> <a href="frn/{{id}}">Email:{{email}}</a>||Talent:{{talent}}||location:{{location}}</li>
+<form method="post" action="/rfrn/{{id}}?_method=DELETE" >
 	<input type="submit" value="delete">
 </form>
 {{/data}}
