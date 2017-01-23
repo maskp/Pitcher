@@ -1,14 +1,24 @@
 {{>headerPartial}}
 <h1> Approved Friendlist</h1>
-<ul>
-
+<table class="table">
+	<tr>
+		<th>Email</th>
+		<th>Talent</th>
+		<th>Location</th>
+		<th>Action</th>
+	</tr>
 {{#data}}
-<li> <a href="frn/{{id}}">Email:{{email}}</a>||Talent:{{talent}}||location:{{location}}</li>
-<form method="post" action="/rfrn/{{id}}?_method=DELETE" >
-	<input type="submit" value="delete">
-</form>
+<tr>
+	<td><a href="frn/{{id}}">Email:{{email}}</a></td>
+	<td>Talent:{{talent}}</td>
+	<td>location:{{location}}</td>
+	<td><form method="post" action="/rfrn/{{id}}?_method=DELETE" >
+			<input type="submit" value="delete" class="btn btn-danger">
+		</form>
+	</td>
+</tr>
 {{/data}}
+</table>
 
 
-</ul>
 {{footerPartial}}
