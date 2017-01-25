@@ -40,8 +40,7 @@ Sql queries and logic
 	1.Notification icon for new message and friend request,
 	2.a little buggy when deleting friends, 
 	3.couldn't implement AWS to store images and video 
-	4.Site is responsive video is not
-	5.not mobile friendly
+	4.not mobile friendly
 
 #link:
 [collab ](https://lit-springs-65937.herokuapp.com/)
