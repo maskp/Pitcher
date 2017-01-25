@@ -14,8 +14,8 @@ post ads,search for artist based on location and talent paremeter, donate money 
 #wireframe
 ![alt wireframe](http://i.imgur.com/97Yohsl.png)
 
-#dependencies:
-Installation instruction:
+#dependencies instruction:
+
 	1.npm install bcryptjs --save
 	2.npm install pg-promise --save
 	3.npm install mustache --save
