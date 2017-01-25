@@ -7,6 +7,7 @@ const mustacheExpress = require('mustache-express');
 const bodyParser = require("body-parser");
 const session = require('express-session');
 const methodOverride = require('method-override')
+const PORT = process.env.PORT || 3000;
 
 /* BCrypt stuff here */
 const bcrypt = require('bcrypt');
@@ -29,6 +30,7 @@ app.use(session({
         secure: false
     }
 }))
+// var db = pgp(process.env.DATABASE_URL ||'postgres://pmk00:passwrd@localhost:5432/users');
 
 var db = pgp('postgres://pmk00:passwrd@localhost:5432/users');
 //base 64
@@ -181,7 +183,7 @@ app.get('/landingpage', function(req, res) {
 app.post('/friendzone', function(req, res) {
     var data = req.body;
 
-    db.many("select distinct on (email) * from usrs where talent=$1 and location=$2", [data.talenttype, data.location])
+    db.many("select distinct on (email) * from usrs where talent=$1 and location=$2 and id != $3", [data.talenttype, data.location,req.session.user.id])
         .then(function(data) {
 
 
@@ -510,6 +512,7 @@ app.get('/postads',function(req,res){
 var t = new Date();
 var h = t.getHours(); 
 var m = t.getMinutes();
+
 app.listen(3000, function() {
     console.log('you are listening on port 3000! time is: '+ ''+ h +':'+m);
 });
