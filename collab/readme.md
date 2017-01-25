@@ -25,17 +25,17 @@ post ads,search for artist based on location and talent paremeter, donate money 
 
 #Technologies used:
 
-Front end uses bootstrap,html,and css while backend uses Express js,pg promise, body parser, psql,javascript. A simple social media application for independent musicians.
+Front end was built on bootstrap,html,animate.css frame work,css while backend uses Express js, and Node js. Postgresql was used for database. 
 
 #Work flow:
 
 Most everything about this project came on ad-hoc basis. No features were ever planned on paper.
 
-#Challenge:
+#Challenges:
 
-sql queries and logic
+Sql queries and logic
 
-#Failures: 	
+#Setbacks: 	
 
 	1.Notification icon for new message and friend request,
 	2.a little buggy when deleting friends, 
@@ -44,5 +44,5 @@ sql queries and logic
 	5.not mobile friendly
 
 #link:
-[collab](https://lit-springs-65937.herokuapp.com/)
+[collab ](https://lit-springs-65937.herokuapp.com/)
  
