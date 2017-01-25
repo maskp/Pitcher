@@ -9,6 +9,7 @@ post ads,search for artist based on location and talent paremeter, donate money 
 [Imgur](http://i.imgur.com/qL7YkkU.png)
 [Imgur](http://i.imgur.com/GQD6dfb.png)
 [Imgur](http://i.imgur.com/ZKqJP7l.png)
+![alt text](http://i.imgur.com/ZKqJP7l.png)
 
 #Technologies used:
 
