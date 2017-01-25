@@ -5,6 +5,9 @@ A social media for independent musician who wants to collab with other musicians
 They can send message,accept friends request, send friend request,delete friends,request to book or get booking request,
 post ads,search for artist based on location and talent paremeter, donate money through stripe api and showcase their work through youtube embed videos when they sign up or update their account.
 
+#screenshot
+![Alt text](http://imgur.com/a/29Z6z)
+
 #Technologies used:
 
 Front end uses bootstrap,html,and css while backend uses Express js,pg promise, body parser, psql,javascript. A simple social media application for independent musicians.
