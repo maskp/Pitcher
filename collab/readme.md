@@ -6,10 +6,10 @@ They can send message,accept friends request, send friend request,delete friends
 post ads,search for artist based on location and talent paremeter, donate money through stripe api and showcase their work through youtube embed videos when they sign up or update their account.
 
 #screenshot
-[Imgur](http://i.imgur.com/qL7YkkU.png)
-[Imgur](http://i.imgur.com/GQD6dfb.png)
-[Imgur](http://i.imgur.com/ZKqJP7l.png)
-![alt text](http://i.imgur.com/ZKqJP7l.png)
+
+![alt landing page](http://i.imgur.com/ZKqJP7l.png)
+![alt signup](http://i.imgur.com/qL7YkkU.png)
+![alt signin](http://i.imgur.com/GQD6dfb.png)
 
 #Technologies used:
 
