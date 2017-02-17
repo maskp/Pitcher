@@ -150,7 +150,7 @@ app.post('/login', function(req, res) {
 
 app.get('/logout', function(req, res) {
     req.session.destroy(function(err) {
-        // cannot access session here
+      
         res.redirect('/')
 
     })
@@ -203,8 +203,7 @@ app.post('/friendzone', function(req, res) {
 
 app.post('/single', function(req, res) {
     var kata = req.body
-    // console.log(kata);
-    // console.log(req.session.user)
+   
 
 
     db.none("insert into friends (email,sample,uid,talent,location,fimg,fuserid) values ($1,$2,$3,$4,$5,$6,$7)", [kata.email, kata.sample, req.session.user.id, kata.talent, kata.location, kata.img, kata.id])
@@ -402,7 +401,7 @@ app.delete('/deletebooking/:bid', function(req, res) {
 app.post('/realfriends', function(req, res) {
     var kata = req.body
 
-    // console.log(req.session.user)
+    
     console.log('fuserid: ' + kata.fuserid)
 
 
@@ -411,13 +410,7 @@ app.post('/realfriends', function(req, res) {
             db.none("insert into approvedlist (email,uid,talent,location,fimg,fuserid) values ($1,$2,$3,$4,$5,$6)", [kata.email, req.session.user.id, kata.talent, kata.location, kata.fimg, kata.fuserid])
                 // db.any("select distinct on (f.email) f.email,f.sample from usrs as u inner join friends as f on u.id = f.uid where u.id=$1", [req.session.user.id])
                 .then(function() {
-                    //         db.any("select u.email,f.email,u.talent,f.fuserid from usrs as u inner join approvedlist as f on u.id = f.fuserid where f.uid = $1 or f.fuserid=$2",[req.session.user.id,kata.fuserid])
-                    // .then(function(data){
-                    //     res.render('realfriends',{'data':data});
-                    // }).catch(function(error){
-                    //     console.log(error)
-                    //     res.send('somethign went wrong')
-                    // })
+                   
 
                     res.redirect('/');
                 })
@@ -463,10 +456,10 @@ app.get('/realfriends', function(req, res) {
                         'id': data[i].fuserid
                     }
                     kata.push(ghata)
-                    //res.render('realfriends',{'data':data})
+                
                 }
 
-                // res.render('realfriends',{'data':kata});
+               
             } //for ends
             res.render('realfriends', {
                 'data': kata

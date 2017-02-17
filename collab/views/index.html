@@ -5,6 +5,8 @@
     
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
    <link href="/css/style.css" rel="stylesheet" type="text/css">
+   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="mobile-device.css" />
+
    <link href="/css/animate.css" rel="stylesheet">
    <link href="/css/hover-min.css" rel="stylesheet" media="all">
     <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
@@ -14,6 +16,7 @@
         src="http://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/js/script.js"></script>
   </head>
   <body>
@@ -27,8 +30,14 @@
         <div class="col-lg-12 center-block">
           
             <nav class="navbar navbar-default">
-              <div class="container">
-              
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+
+            </button>
+
+              <div class="navbar-collapse collapse">
                 <a class="btn btn-default hvr-hang" href="/logout" role="button"><b>Logout</b></a>
                 <a class="btn btn-default hvr-hang" href="/landingpage" role="button"><b>Search</b></a>
                 <a class="btn btn-default hvr-hang" href="/friendlist" role="button"><b>Friend Reqs</b></a>
@@ -38,13 +47,13 @@
                 <a class="btn btn-default hvr-hang" href="/MessageList" role="button"><b>Messages</b></a>
                 <a class="btn btn-default hvr-hang" href="/realfriends" role="button"><b>Friends</b></a>
                 <a class="btn btn-default hvr-hang" href="/postads" role="button"><b>Ads</b></a>
-                </div>
+              </div>
           
             </nav>
             <br/>
           <h4>Welcome {{email}}!</h4>
             
-          <div id="image" class="col-md-3">
+          <div id="image" class="col-sm-3">
         
               <img style="width:200px;height:200px" src="{{img}}"/>
             
@@ -52,14 +61,15 @@
             <p>I'm a {{talent}}</p>
             <a href="/adform" class="btn btn-primary" role="button">Post an ad</a>
           </div>
-           
+           <br>
            <!--  <iframe width="560" height="315" src={{sample}} frameborder="0"></iframe> -->
-         <div>
-          <div class="video col-md-9 embed-responsive embed-responsive-4by3 float-sm-left">
+         
+          <div class="video col-sm-9 embed-responsive embed-responsive-4by3">
            {{{sample}}}<br>
+            I was the {{talent}} for this song.
            </div>
-           I was the {{talent}} for this song.
-          </div>
+          
+        
           
         
           <div class="col-md-12">          
