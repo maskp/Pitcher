@@ -25,22 +25,7 @@ post ads,search for artist based on location and talent paremeter, donate money 
 
 #Technologies used:
 
-Front end was built on bootstrap,html,animate.css frame work,css while backend uses Express js, and Node js. Postgresql was used for database. 
-
-#Work flow:
-
-Most everything about this project came on ad-hoc basis. No features were ever planned on paper.
-
-#Challenges:
-
-Sql queries and logic
-
-#Setbacks: 	
-
-	1.Notification icon for new message and friend request,
-	2.a little buggy when deleting friends, 
-	3.couldn't implement AWS to store images and video 
-	4.not mobile friendly
+Front end was built on bootstrap,html,animate.css frame work,css while backend uses Express js, and Node js. Postgresql was used 
 
 #link:
 [collab ](https://lit-springs-65937.herokuapp.com/)
