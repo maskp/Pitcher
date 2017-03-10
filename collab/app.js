@@ -6,10 +6,15 @@ const pgp = require('pg-promise')();
 const mustacheExpress = require('mustache-express');
 const bodyParser = require("body-parser");
 const session = require('express-session');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const PS = require('pg-promise').PreparedStatement;
 const PORT = process.env.PORT || 3000;
 const bcrypt = require('bcrypt');
 
+
+
+
+//middleware
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
@@ -41,20 +46,9 @@ app.get("/", function(req, res) {
         logged_in = true;
         email = req.session.user.email;
         talent = req.session.user.talent;
-        // decoded = Base64.decode(req.session.user.sample);
-        //==============
-        var im = req.session.userimages;
-        if (im && FileReader && FileList && Bytea) {
-
-            var reader = new FileReader();
-            var image = reader.readAsDataURL(im);
-        }
-
-
-        //==============
         sample = req.session.user.sample;
         img = req.session.user.img;
-        userimages = image
+        
     }
 
     var data = {
@@ -63,7 +57,7 @@ app.get("/", function(req, res) {
         "talent": talent,
         "sample": sample,
         "img": img,
-        "userimages": image
+        
     }
 
     res.render('index', data);
@@ -101,17 +95,12 @@ app.get("/signup", function(req, res) {
 
 app.post('/signup', function(req, res) {
     var data = req.body;
-    console.log(data);
-
+    
     bcrypt.hash(data.password, 10, function(err, hash) {
-
-        // read in image in raw format (as type Buffer):
-
-        // inserting data into column 'userimages' of type 'bytea':
-        db.none(
-
-                "INSERT INTO usrs(email,password,talent,sample,location,img,userimages) VALUES ($1,$2,$3,$4,$5,$6,$7)", [data.email, hash, data.TalentType, data.samplework, data.location, data.img, data.imgfile]
-            )
+        //prepared statement
+        var addUser = new PS('add-user','INSERT INTO usrs(email,password,talent,sample,location,img) VALUES ($1,$2,$3,$4,$5,$6)');
+        addUser.values = [data.email, hash, data.TalentType, data.samplework, data.location, data.img];
+            db.none(addUser)
             .then(function() {
                 res.redirect('/');
             })
@@ -129,10 +118,8 @@ app.post('/signup', function(req, res) {
 
 app.post('/login', function(req, res) {
     var data = req.body;
-
-    db.one(
-            "SELECT * FROM usrs WHERE email = $1", [data.email]
-        )
+    var findUser = new PS('find-user', 'SELECT * FROM usrs WHERE email = $1', [data.email]);
+    db.one(findUser)
         .catch(function() {
             res.render('404')
         })
@@ -163,9 +150,9 @@ app.get('/landingpage', function(req, res) {
 
 
     var username = req.session.user.email;
-    var email = req.session.user.id;
-
-    db.one("select * from usrs where id=$1", [email])
+    var id = req.session.user.id;
+    var findUser = new PS('find-usa','select * from usrs where id=$1', [id]);
+    db.one(findUser)
         .then(function(data) {
 
             res.render('landingpage', {
@@ -182,8 +169,7 @@ app.get('/landingpage', function(req, res) {
 
 
 app.post('/friendzone', function(req, res) {
-    var data = req.body;
-
+    var data = req.body
     db.many("select distinct on (email) * from usrs where talent=$1 and location=$2 and id != $3", [data.talenttype, data.location, req.session.user.id])
         .then(function(data) {
 
@@ -203,13 +189,11 @@ app.post('/friendzone', function(req, res) {
 
 app.post('/single', function(req, res) {
     var kata = req.body
-   
-
-
-    db.none("insert into friends (email,sample,uid,talent,location,fimg,fuserid) values ($1,$2,$3,$4,$5,$6,$7)", [kata.email, kata.sample, req.session.user.id, kata.talent, kata.location, kata.img, kata.id])
-        // db.any("select distinct on (f.email) f.email,f.sample from usrs as u inner join friends as f on u.id = f.uid where u.id=$1", [req.session.user.id])
-        .then(function() {
-
+    ;
+    var addFriends = new PQ('add-friends',"INSERT into friends (email,sample,uid,talent,location,fimg,fuserid) values ($1,$2,$3,$4,$5,$6,$7)");
+    addFriends.values = [kata.email, kata.sample, req.session.user.id, kata.talent, kata.location, kata.img, kata.id];
+    db.none(addFriends)
+       .then(function() {
             res.redirect('/' );
         })
         .catch(function(error) {
@@ -219,10 +203,10 @@ app.post('/single', function(req, res) {
 
 })
 
-//====================================friendly shit=================================================================================
+//====================================friendly stuff=================================================================================
 
 app.get('/friendlist', function(req, res) {
-    var sata = req.session.user.email
+    var sata = req.session.user.email;
 
     db.any("select distinct on (u.email) u.email,u.sample,u.talent,u.location,u.img,f.fuserid,u.id from usrs as u inner join friends as f on u.id = f.uid where f.fuserid=$1", [req.session.user.id])
         .then(function(data) {
